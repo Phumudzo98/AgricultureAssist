@@ -1,23 +1,17 @@
-package com.agriculture.project.model;
+package com.agriculture.project.dto;
 
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Farm {
+public class FarmDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String farm_name;
     private String farm_type;
@@ -25,14 +19,5 @@ public class Farm {
     private String farm_description;
     private double size;
     private String metrics;
-
-    @Lob
-    @Column(columnDefinition = "BYTEA")
-    private byte[] image;
-
-    @ManyToOne
-    private User user;
-
-    @OneToMany
-    private List<LandDetails> landDetails;
+    private Byte image;
 }

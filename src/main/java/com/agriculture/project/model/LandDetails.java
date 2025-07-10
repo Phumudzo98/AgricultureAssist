@@ -10,27 +10,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
+public class LandDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
-    private String email;
-    private String password;
-    private String full_name;
-    private String phone_number;
-    private String address;
-    private String city;
-    private String province;
-    private LocalDate createdAt;
-
-
+    private String plantationDetails;
+    private double size;
+    private String metrics;
 }
