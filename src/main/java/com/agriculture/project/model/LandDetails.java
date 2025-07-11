@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +23,15 @@ public class LandDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String plantationDetails;
+    private String sectionName;
+    private String soilType;
+    private LocalDate lastPlantedDate;
+    private LocalDate lastHarvestDate;
+    private String irrigationType;
+    private boolean underCultivation;
+    private String latitude;
+    private String longitude;
+    private String notes;
     private double size;
     private String metrics;
 }

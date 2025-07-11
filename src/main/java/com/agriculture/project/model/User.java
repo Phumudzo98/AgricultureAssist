@@ -30,6 +30,7 @@ public class User {
     private String address;
     private String city;
     private String province;
+    private String role;
     private LocalDate createdAt;
 
 

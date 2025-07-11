@@ -6,21 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+@AllArgsConstructor
+public class RegisterDto {
 
-    private Long id;
     private String email;
+    private String password;
     private String full_name;
     private String phone_number;
     private String address;
     private String city;
     private String province;
-    private LocalDate createdAt;
-    private String role;
 }
