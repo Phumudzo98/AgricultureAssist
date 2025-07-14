@@ -27,7 +27,6 @@ public class Farm {
     private String metrics;
 
     @Lob
-    @Column(columnDefinition = "BYTEA")
     private byte[] image;
 
     @ManyToOne

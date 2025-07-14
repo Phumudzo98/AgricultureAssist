@@ -33,5 +33,7 @@ public class User {
     private String role;
     private LocalDate createdAt;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Farm> farms;
 
 }

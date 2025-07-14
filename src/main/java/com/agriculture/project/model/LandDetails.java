@@ -34,4 +34,7 @@ public class LandDetails {
     private String notes;
     private double size;
     private String metrics;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Farm farm;
 }
