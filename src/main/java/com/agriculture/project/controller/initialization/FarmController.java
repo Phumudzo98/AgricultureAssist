@@ -3,6 +3,6 @@ package com.agriculture.project.controller.initialization;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/user")
-public interface UserController {
+@RequestMapping("/farm")
+public interface FarmController {
 }
