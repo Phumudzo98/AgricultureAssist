@@ -1,6 +1,8 @@
 package com.agriculture.project.service.implementation;
 
 import com.agriculture.project.dto.FarmDto;
+import com.agriculture.project.model.Farm;
+import com.agriculture.project.repository.FarmRepository;
 import com.agriculture.project.service.initialization.FarmService;
 import org.springframework.stereotype.Service;
 
@@ -8,23 +10,30 @@ import java.util.List;
 
 @Service
 public class FarmServiceImpl implements FarmService {
-    @Override
-    public List<FarmDto> getFarms() {
-        return List.of();
+
+    private final FarmRepository farmRepository;
+
+    public FarmServiceImpl(FarmRepository farmRepository) {
+        this.farmRepository = farmRepository;
     }
 
     @Override
-    public FarmDto getFarmById(int id) {
+    public List<Farm> getFarms() {
+        return farmRepository.findAll();
+    }
+
+    @Override
+    public Farm getFarmById(int id) {
         return null;
     }
 
     @Override
-    public FarmDto createFarm(FarmDto farm) {
+    public Farm createFarm(FarmDto farm) {
         return null;
     }
 
     @Override
-    public FarmDto updateFarm(FarmDto farm) {
+    public Farm updateFarm(FarmDto farm) {
         return null;
     }
 
@@ -34,7 +43,7 @@ public class FarmServiceImpl implements FarmService {
     }
 
     @Override
-    public List<FarmDto> searchFarm(String search) {
+    public List<Farm> searchFarm(String search) {
         return List.of();
     }
 }

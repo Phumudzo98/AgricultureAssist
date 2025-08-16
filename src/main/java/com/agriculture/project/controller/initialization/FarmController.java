@@ -23,4 +23,7 @@ public interface FarmController {
 
     @GetMapping("search-farm/{name}")
     List<FarmDto> searchFarm(@PathVariable String name);
+
+    @PutMapping("update-farm")
+    FarmDto updateFarm(FarmDto farmDto);
 }
