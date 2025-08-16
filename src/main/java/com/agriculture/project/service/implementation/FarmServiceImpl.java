@@ -1,6 +1,7 @@
 package com.agriculture.project.service.implementation;
 
 import com.agriculture.project.dto.FarmDto;
+import com.agriculture.project.mapper.FarmMapper;
 import com.agriculture.project.model.Farm;
 import com.agriculture.project.repository.FarmRepository;
 import com.agriculture.project.service.initialization.FarmService;
@@ -12,9 +13,11 @@ import java.util.List;
 public class FarmServiceImpl implements FarmService {
 
     private final FarmRepository farmRepository;
+    private final FarmMapper farmMapper;
 
-    public FarmServiceImpl(FarmRepository farmRepository) {
+    public FarmServiceImpl(FarmRepository farmRepository, FarmMapper farmMapper) {
         this.farmRepository = farmRepository;
+        this.farmMapper = farmMapper;
     }
 
     @Override

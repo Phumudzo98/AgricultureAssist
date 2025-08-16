@@ -12,5 +12,5 @@ public interface FarmMapper {
 
     FarmDto toDto(Farm farm);
     Farm fromDto(FarmDto farmDto);
-    List<FarmDto> toDto(List<Farm> farms);
+    //List<FarmDto> toDto(List<Farm> farms);
 }

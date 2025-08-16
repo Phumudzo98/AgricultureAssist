@@ -21,7 +21,7 @@ public class FarmDto {
     private String farm_description;
     private double size;
     private String metrics;
-    private Byte image;
+    private Byte[] image;
 
     private List<LandDetailsDto> landDetails;
 }

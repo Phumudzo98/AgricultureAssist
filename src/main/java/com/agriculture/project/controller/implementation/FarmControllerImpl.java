@@ -16,6 +16,7 @@ public class FarmControllerImpl implements FarmController {
     private final FarmService farmService;
     private final FarmMapper farmMapper;
 
+
     @Override
     public FarmDto createFarm(FarmDto farmDto) {
         return farmMapper.toDto(farmService.createFarm(farmDto));
@@ -23,12 +24,12 @@ public class FarmControllerImpl implements FarmController {
 
     @Override
     public List<FarmDto> getFarms() {
-        return farmMapper.toDto(farmService.getFarms());
+        return List.of();
     }
 
     @Override
     public FarmDto getFarmById(int id) {
-        return farmService.getFarmById(id);
+        return farmMapper.toDto(farmService.getFarmById(id));
     }
 
     @Override
@@ -38,7 +39,7 @@ public class FarmControllerImpl implements FarmController {
 
     @Override
     public List<FarmDto> searchFarm(String name) {
-        return farmMapper.toDto(farmService.searchFarm(name));
+        return List.of();
     }
 
     @Override
