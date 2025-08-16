@@ -28,12 +28,12 @@ public class FarmControllerImpl implements FarmController {
     }
 
     @Override
-    public FarmDto getFarmById(int id) {
+    public FarmDto getFarmById(Long id) {
         return farmMapper.toDto(farmService.getFarmById(id));
     }
 
     @Override
-    public boolean deleteFarm(int id) {
+    public boolean deleteFarm(Long id) {
         return farmService.deleteFarm(id);
     }
 

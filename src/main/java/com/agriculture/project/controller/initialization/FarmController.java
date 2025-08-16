@@ -16,10 +16,10 @@ public interface FarmController {
     List<FarmDto> getFarms();
 
     @GetMapping("get-farm/{id}")
-    FarmDto getFarmById(@PathVariable int id);
+    FarmDto getFarmById(@PathVariable Long id);
 
     @DeleteMapping("delete-farm/{id}")
-    boolean deleteFarm(@PathVariable int id);
+    boolean deleteFarm(@PathVariable Long id);
 
     @GetMapping("search-farm/{name}")
     List<FarmDto> searchFarm(@PathVariable String name);

@@ -8,9 +8,9 @@ import java.util.List;
 public interface FarmService {
 
     List<Farm> getFarms();
-    Farm getFarmById(int id);
+    Farm getFarmById(Long id);
     Farm createFarm(FarmDto farm);
     Farm updateFarm(FarmDto farm);
-    boolean deleteFarm(int id);
+    boolean deleteFarm(Long id);
     List<Farm> searchFarm(String search);
 }
