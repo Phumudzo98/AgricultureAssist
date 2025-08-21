@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class FarmDto {
 
-    private long id;
+
     private String farm_name;
     private String farm_type;
     private String farm_location;

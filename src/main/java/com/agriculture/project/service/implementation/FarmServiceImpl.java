@@ -9,9 +9,7 @@ import com.agriculture.project.repository.UserRepository;
 import com.agriculture.project.service.initialization.FarmService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +19,6 @@ public class FarmServiceImpl implements FarmService {
     private final FarmRepository farmRepository;
     private final FarmMapper farmMapper;
     private final UserRepository userRepository;
-
 
     public FarmServiceImpl(FarmRepository farmRepository, FarmMapper farmMapper, UserRepository userRepository) {
         this.farmRepository = farmRepository;
@@ -42,7 +39,6 @@ public class FarmServiceImpl implements FarmService {
         if(optionalFarm.isPresent()) {
             return optionalFarm.get();
         }
-
         return null;
     }
 
@@ -58,18 +54,22 @@ public class FarmServiceImpl implements FarmService {
                 .orElseThrow(() -> new RuntimeException("User not found with username: " + username));
 
         convertedFarm.setUser(user);
+
+        if (convertedFarm.getLandDetails() != null) {
+            convertedFarm.getLandDetails().forEach(land -> land.setFarm(convertedFarm));
+        }
+
         return farmRepository.save(convertedFarm);
     }
 
     @Override
     public Farm updateFarm(FarmDto farm) {
 
-        if(farm==null)
+        if(farm!=null)
         {
-            return null;
+            return farmRepository.save(farmMapper.fromDto(farm));
         }
-
-        return farmRepository.save(farmMapper.fromDto(farm));
+        return null;
     }
 
     @Override
@@ -82,7 +82,6 @@ public class FarmServiceImpl implements FarmService {
             farmRepository.delete(farm);
             return true;
         }
-
         return false;
     }
 

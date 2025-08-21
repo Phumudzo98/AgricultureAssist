@@ -4,6 +4,7 @@ package com.agriculture.project.mapper;
 import com.agriculture.project.dto.FarmDto;
 import com.agriculture.project.model.Farm;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ import java.util.List;
 public interface FarmMapper {
 
     FarmDto toDto(Farm farm);
+
+    @Mapping(target = "id", ignore = true)
     Farm fromDto(FarmDto farmDto);
     //List<FarmDto> toDto(List<Farm> farms);
 }
