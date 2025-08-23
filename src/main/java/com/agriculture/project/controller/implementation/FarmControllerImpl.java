@@ -6,6 +6,7 @@ import com.agriculture.project.dto.FarmDto;
 import com.agriculture.project.mapper.FarmMapper;
 import com.agriculture.project.service.ChatGptService;
 import com.agriculture.project.service.initialization.FarmService;
+import com.agriculture.project.service.initialization.GeminiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ public class FarmControllerImpl implements FarmController {
     private final FarmService farmService;
     private final FarmMapper farmMapper;
     private final ChatGptService chatGptService;
+    private final GeminiService geminiService;
 
 
     @Override
@@ -30,6 +32,11 @@ public class FarmControllerImpl implements FarmController {
     @Override
     public List<FarmDto> getFarms() {
         return List.of();
+    }
+
+    @Override
+    public String analyzeImage(String prompt, MultipartFile file) throws Exception {
+        return geminiService.analyzeImage(prompt, file);
     }
 
     @Override

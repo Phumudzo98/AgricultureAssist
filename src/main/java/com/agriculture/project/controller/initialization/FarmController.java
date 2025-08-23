@@ -1,7 +1,7 @@
 package com.agriculture.project.controller.initialization;
 
 
-import com.agriculture.project.dto.ChatResponse;
+
 import com.agriculture.project.dto.FarmDto;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +16,12 @@ public interface FarmController {
 
     @GetMapping("get-farms")
     List<FarmDto> getFarms();
+
+    @PostMapping("/analyze")
+    public String analyzeImage(
+            @RequestParam("prompt") String prompt,
+            @RequestParam("file") MultipartFile file
+    ) throws Exception;
 
     @PostMapping("/chat-with-ai")
     String chatWithAi(
