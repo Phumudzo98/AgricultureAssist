@@ -26,6 +26,7 @@ public class Farm {
     private String farm_description;
     private double size;
     private String metrics;
+    private String city;
 
     @Lob
     private byte[] image;

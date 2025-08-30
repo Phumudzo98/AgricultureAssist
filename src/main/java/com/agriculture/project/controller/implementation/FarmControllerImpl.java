@@ -3,6 +3,7 @@ package com.agriculture.project.controller.implementation;
 import com.agriculture.project.controller.initialization.FarmController;
 import com.agriculture.project.dto.ChatResponse;
 import com.agriculture.project.dto.FarmDto;
+import com.agriculture.project.dto.FarmOverviewDto;
 import com.agriculture.project.mapper.FarmMapper;
 import com.agriculture.project.service.ChatGptService;
 import com.agriculture.project.service.initialization.FarmService;
@@ -27,6 +28,11 @@ public class FarmControllerImpl implements FarmController {
     @Override
     public FarmDto createFarm(FarmDto farmDto) {
         return farmMapper.toDto(farmService.createFarm(farmDto));
+    }
+
+    @Override
+    public FarmOverviewDto farmOverview(Long farmId) {
+        return null;
     }
 
     @Override

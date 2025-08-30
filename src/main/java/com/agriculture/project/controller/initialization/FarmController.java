@@ -3,6 +3,7 @@ package com.agriculture.project.controller.initialization;
 
 
 import com.agriculture.project.dto.FarmDto;
+import com.agriculture.project.dto.FarmOverviewDto;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,10 +12,13 @@ import java.util.List;
 @RequestMapping("/farm")
 public interface FarmController {
 
-    @PostMapping("create-farm")
+    @PostMapping("/create-farm")
     FarmDto createFarm(@RequestBody FarmDto farmDto);
 
-    @GetMapping("get-farms")
+    @GetMapping("/farm-overview/{farmId}")
+    FarmOverviewDto farmOverview(@PathVariable("farmId") Long farmId);
+
+    @GetMapping("/get-farms")
     List<FarmDto> getFarms();
 
     @PostMapping("/analyze")
@@ -29,15 +33,15 @@ public interface FarmController {
             @RequestPart(value = "file", required = false) MultipartFile file
     );
 
-    @GetMapping("get-farm/{id}")
+    @GetMapping("/get-farm/{id}")
     FarmDto getFarmById(@PathVariable Long id);
 
-    @DeleteMapping("delete-farm/{id}")
+    @DeleteMapping("/delete-farm/{id}")
     boolean deleteFarm(@PathVariable Long id);
 
-    @GetMapping("search-farm/{name}")
+    @GetMapping("/search-farm/{name}")
     List<FarmDto> searchFarm(@PathVariable String name);
 
-    @PutMapping("update-farm")
+    @PutMapping("/update-farm")
     FarmDto updateFarm(FarmDto farmDto);
 }

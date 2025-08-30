@@ -1,6 +1,7 @@
 package com.agriculture.project.service.implementation;
 
 import com.agriculture.project.dto.FarmDto;
+import com.agriculture.project.dto.FarmOverviewDto;
 import com.agriculture.project.mapper.FarmMapper;
 import com.agriculture.project.model.Farm;
 import com.agriculture.project.model.User;
@@ -88,5 +89,28 @@ public class FarmServiceImpl implements FarmService {
     @Override
     public List<Farm> searchFarm(String search) {
         return List.of();
+    }
+
+    @Override
+    public FarmOverviewDto getFarmOverview(Long farmId) {
+
+        Optional<Farm> optionalFarm = farmRepository.findById(farmId);
+
+        if(optionalFarm.isPresent()) {
+
+            Farm farm = optionalFarm.get();
+            FarmOverviewDto farmOverviewDto = new FarmOverviewDto();
+
+            farmOverviewDto.setFarmType(farm.getFarm_type());
+            farmOverviewDto.setFarmName(farm.getFarm_name());
+            farmOverviewDto.setLocation(String.format("%.2f", farm.getFarm_location()));
+            farmOverviewDto.setDominantSoilType(farmOverviewDto.getDominantSoilType());
+            farmOverviewDto.setNumberOfSections(farmOverviewDto.getNumberOfSections());
+            farmOverviewDto.setTotalSize(farmOverviewDto.getTotalSize());
+
+            return farmOverviewDto;
+
+        }
+        return null;
     }
 }

@@ -19,7 +19,6 @@ public class LandDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String sectionName;
     private String soilType;
     private LocalDate lastPlantedDate;
