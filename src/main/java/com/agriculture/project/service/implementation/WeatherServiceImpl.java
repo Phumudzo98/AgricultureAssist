@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
-    private FarmRepository farmRepository;
+    private final FarmRepository farmRepository;
 
 
     @Value("${OpenWeatherAPI}")
@@ -24,6 +24,10 @@ public class WeatherServiceImpl implements WeatherService {
     private static final String BASE_URL = "https://api.openweathermap.org/data/3.0/onecall";
 
     private final RestTemplate restTemplate = new RestTemplate();
+
+    public WeatherServiceImpl(FarmRepository farmRepository) {
+        this.farmRepository = farmRepository;
+    }
 
 
     private double[] getLatLon(String city) {
