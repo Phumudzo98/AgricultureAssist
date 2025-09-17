@@ -45,7 +45,7 @@ public class WeatherServiceImpl implements WeatherService {
 
 
     @Override
-    public Map<String, Object> getFullForecast(Long id, String exclude) {
+    public Map getFullForecast(Long id, String exclude) {
         return farmRepository.findById(id)
                 .map(farm -> {
                     double[] coords = getLatLon(farm.getCity());
