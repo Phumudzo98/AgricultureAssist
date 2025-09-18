@@ -7,13 +7,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
-
 @Mapper(componentModel = "spring")
 public interface FarmMapper {
 
     FarmDto toDto(Farm farm);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id", ignore = true) // ignore ID when creating new Farm
     Farm fromDto(FarmDto farmDto);
-    //List<FarmDto> toDto(List<Farm> farms);
+
+    // ✅ MapStruct can automatically map lists
+    List<FarmDto> toDtoList(List<Farm> farms);
 }
+

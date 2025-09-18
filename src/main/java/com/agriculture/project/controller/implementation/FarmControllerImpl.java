@@ -11,7 +11,6 @@ import com.agriculture.project.service.initialization.GeminiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -32,12 +31,12 @@ public class FarmControllerImpl implements FarmController {
 
     @Override
     public FarmOverviewDto farmOverview(Long farmId) {
-        return null;
+        return farmService.getFarmOverview(farmId);
     }
 
     @Override
     public List<FarmDto> getFarms() {
-        return List.of();
+        return farmMapper.toDtoList(farmService.getFarms());
     }
 
     @Override

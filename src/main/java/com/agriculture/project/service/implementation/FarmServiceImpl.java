@@ -11,11 +11,15 @@ import com.agriculture.project.service.initialization.FarmService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class FarmServiceImpl implements FarmService {
+
+
 
     private final FarmRepository farmRepository;
     private final FarmMapper farmMapper;
@@ -29,7 +33,16 @@ public class FarmServiceImpl implements FarmService {
 
     @Override
     public List<Farm> getFarms() {
-        return farmRepository.findAll();
+
+        Optional<User> optionalUser = userRepository.findByEmail(getCurrentUserEmail());
+
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+           return farmRepository.findByUser(user);
+        }
+
+        return Collections.emptyList();
     }
 
     @Override
@@ -112,5 +125,13 @@ public class FarmServiceImpl implements FarmService {
 
         }
         return null;
+    }
+
+    private String getCurrentUserEmail() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new IllegalStateException("No authenticated user found");
+        }
+        return authentication.getName();
     }
 }
