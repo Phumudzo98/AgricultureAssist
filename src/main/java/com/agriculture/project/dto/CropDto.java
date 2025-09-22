@@ -1,20 +1,13 @@
-package com.agriculture.project.model;
+package com.agriculture.project.dto;
 
-
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
-public class Crop {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+public class CropDto {
 
     private String cropName;          // e.g. Maize, Tomatoes
     private String variety;           // e.g. Sweet corn, Cherry tomato
@@ -24,9 +17,5 @@ public class Crop {
     private double yield;             // quantity harvested
     private String yieldUnit;         // e.g. kg, tons, bags
     private String growthStage;       // e.g. seedling, vegetative, flowering
-    private String healthStatus;      // e.g. healthy, diseased, pest-affected
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "land_id")
-    private LandDetails landDetails;
+    private String healthStatus;
 }
