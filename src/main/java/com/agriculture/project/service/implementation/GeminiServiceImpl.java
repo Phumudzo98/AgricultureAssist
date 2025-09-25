@@ -25,7 +25,7 @@ public class GeminiServiceImpl implements GeminiService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public String analyzeImage(String prompt, MultipartFile file) throws Exception {
-        // Convert uploaded file to Base64
+
         String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
 
 
@@ -34,12 +34,12 @@ public class GeminiServiceImpl implements GeminiService {
 
         String url = apiUrl + "?key=" + apiKey;
 
-        // Build request body
+
         Map<String, Object> requestBody = new HashMap<>();
         List<Object> parts = new ArrayList<>();
         parts.add(Map.of("text", prompt));
         parts.add(Map.of("inlineData", Map.of(
-                "mimeType", file.getContentType(), // image/png or image/jpeg
+                "mimeType", file.getContentType(),
                 "data", base64Image
         )));
 
@@ -54,7 +54,7 @@ public class GeminiServiceImpl implements GeminiService {
                 GeminiResponseDto.class
         );
 
-        // Extract only the generated text
+
         if (response.getBody() != null &&
                 response.getBody().getCandidates() != null &&
                 !response.getBody().getCandidates().isEmpty()) {

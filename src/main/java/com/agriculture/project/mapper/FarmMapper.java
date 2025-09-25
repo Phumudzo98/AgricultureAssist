@@ -15,7 +15,6 @@ public interface FarmMapper {
     @Mapping(target = "id", ignore = true)
     Farm fromDto(FarmDto farmDto);
 
-
     List<FarmDto> toDtoList(List<Farm> farms);
 }
 

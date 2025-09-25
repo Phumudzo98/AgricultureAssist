@@ -12,7 +12,7 @@ public interface PestDiseaseService {
 
     public PestDisease createPestDisease(PestDisease pestDisease, Long id);
     public List<PestDisease> getByCrop(Long cropId);
-    public Optional<PestDisease> getById(Long id);
+    public PestDisease getById(Long id);
     public PestDisease updatePestDisease(Long id, PestDisease updated);
     public Boolean delete(Long id);
 

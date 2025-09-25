@@ -1,10 +1,8 @@
 package com.agriculture.project.service.implementation;
 
 import com.agriculture.project.model.Crop;
-import com.agriculture.project.model.LandDetails;
 import com.agriculture.project.model.PestDisease;
 import com.agriculture.project.repository.CropRepository;
-import com.agriculture.project.repository.LandDetailsRepository;
 import com.agriculture.project.repository.PestDiseaseRepository;
 import com.agriculture.project.service.initialization.PestDiseaseService;
 import lombok.RequiredArgsConstructor;
@@ -45,10 +43,10 @@ public class PestDiseaseServiceImpl implements PestDiseaseService {
     }
 
     @Override
-    public Optional<PestDisease> getById(Long id) {
+    public PestDisease getById(Long id) {
 
-        PestDisease pestDisease = null;
-        return Optional.empty();
+        return pestDiseaseRepository.findById(id).orElse(null);
+
     }
 
     @Override
