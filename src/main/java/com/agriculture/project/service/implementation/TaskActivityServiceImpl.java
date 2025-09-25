@@ -1,5 +1,7 @@
 package com.agriculture.project.service.implementation;
 
+import com.agriculture.project.dto.TaskActivityDto;
+import com.agriculture.project.mapper.TaskActivityMapper;
 import com.agriculture.project.model.LandDetails;
 import com.agriculture.project.model.TaskActivity;
 import com.agriculture.project.repository.LandDetailsRepository;
@@ -20,9 +22,9 @@ public class TaskActivityServiceImpl implements TaskActivityService {
 
     @Autowired
     private TaskActivityRepository taskActivityRepository;
-
     @Autowired
     private LandDetailsRepository landDetailsRepository;
+    private final TaskActivityMapper taskActivityMapper;
 
     @Override
     public TaskActivity createTask(TaskActivity taskActivity, Long landId) {
@@ -51,12 +53,29 @@ public class TaskActivityServiceImpl implements TaskActivityService {
     }
 
     @Override
-    public Optional<TaskActivity> getById(Long id) {
-        return Optional.empty();
+    public TaskActivity getById(Long id) {
+        Optional<TaskActivity> taskActivity = taskActivityRepository.findById(id);
+
+        if (taskActivity.isPresent()) {
+            return taskActivity.get();
+        }
+
+        return null;
     }
 
     @Override
-    public TaskActivity updateTask(Long id, TaskActivity updated) {
+    public TaskActivity updateTask(Long id, TaskActivityDto updated) {
+        TaskActivity taskActivity = taskActivityMapper.toEntity(updated);
+
+        Optional<LandDetails> landDetails = landDetailsRepository.findById(id);
+
+        if (landDetails.isPresent()) {
+            LandDetails landDetail = landDetails.get();
+
+            taskActivity.setLandDetails(landDetail);
+            return taskActivityRepository.save(taskActivity);
+        }
+
         return null;
     }
 

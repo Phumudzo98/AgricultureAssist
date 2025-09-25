@@ -1,6 +1,7 @@
 package com.agriculture.project.controller.initialization;
 
 
+import com.agriculture.project.dto.TaskActivityDto;
 import com.agriculture.project.model.TaskActivity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,19 +12,19 @@ import java.util.List;
 public interface TaskActivityController {
 
     @PostMapping
-    public TaskActivity create(@RequestBody TaskActivity taskActivity, Long id);
+    public TaskActivityDto create(@RequestBody TaskActivity taskActivity, Long id);
 
     @GetMapping("/{id}")
-    public TaskActivity getById(@PathVariable Long id);
+    public TaskActivityDto getById(@PathVariable Long id);
 
     @GetMapping("/by-land/{landId}")
-    public List<TaskActivity> getByLand(@PathVariable Long landId);
+    public List<TaskActivityDto> getByLand(@PathVariable Long landId);
 
     @GetMapping("/daily")
-    public List<TaskActivity> getByDate(@RequestParam String date);
+    public List<TaskActivityDto> getByDate(@RequestParam String date);
 
     @PutMapping("/{id}")
-    public TaskActivity update(@PathVariable Long id, @RequestBody TaskActivity taskActivity);
+    public TaskActivityDto update(@PathVariable Long id, @RequestBody TaskActivityDto taskActivity);
 
     @DeleteMapping("/{id}")
     public Boolean delete(@PathVariable Long id);

@@ -1,6 +1,8 @@
 package com.agriculture.project.controller.implementation;
 
 import com.agriculture.project.controller.initialization.TaskActivityController;
+import com.agriculture.project.dto.TaskActivityDto;
+import com.agriculture.project.mapper.TaskActivityMapper;
 import com.agriculture.project.model.TaskActivity;
 import com.agriculture.project.service.initialization.TaskActivityService;
 import lombok.RequiredArgsConstructor;
@@ -15,35 +17,39 @@ import java.util.List;
 public class TaskActivityControllerImpl implements TaskActivityController {
 
     @Autowired
-    public TaskActivityService taskActivityService;
+    private TaskActivityService taskActivityService;
+    private final TaskActivityMapper taskActivityMapper;
+
 
     @Override
-    public TaskActivity create(TaskActivity taskActivity, Long id) {
-        return null;
+    public TaskActivityDto create(TaskActivity taskActivity, Long id) {
+        return taskActivityMapper.toDto(taskActivityService.createTask(taskActivity, id));
     }
 
     @Override
-    public TaskActivity getById(Long id) {
-        return null;
+    public TaskActivityDto getById(Long id) {
+        return taskActivityMapper.toDto(taskActivityService.getById(id));
     }
 
     @Override
-    public List<TaskActivity> getByLand(Long landId) {
+    public List<TaskActivityDto> getByLand(Long landId) {
+        return taskActivityMapper.toDtoList(taskActivityService.getByLand(landId));
+    }
+
+    @Override
+    public List<TaskActivityDto> getByDate(String date) {
         return List.of();
     }
 
     @Override
-    public List<TaskActivity> getByDate(String date) {
-        return List.of();
-    }
+    public TaskActivityDto update(Long id, TaskActivityDto taskActivity) {
 
-    @Override
-    public TaskActivity update(Long id, TaskActivity taskActivity) {
-        return null;
+
+        return taskActivityMapper.toDto(taskActivityService.updateTask(id,taskActivity));
     }
 
     @Override
     public Boolean delete(Long id) {
-        return null;
+        return taskActivityService.delete(id);
     }
 }

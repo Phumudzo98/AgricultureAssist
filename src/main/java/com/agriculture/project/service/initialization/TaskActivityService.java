@@ -1,6 +1,7 @@
 package com.agriculture.project.service.initialization;
 
 
+import com.agriculture.project.dto.TaskActivityDto;
 import com.agriculture.project.model.TaskActivity;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,9 @@ public interface TaskActivityService {
 
     public List<TaskActivity> getByDate(LocalDate date);
 
-    public Optional<TaskActivity> getById(Long id);
+    public TaskActivity getById(Long id);
 
-    public TaskActivity updateTask(Long id, TaskActivity updated);
+    public TaskActivity updateTask(Long id, TaskActivityDto updated);
 
     public Boolean delete(Long id);
 }
