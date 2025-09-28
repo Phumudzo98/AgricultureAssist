@@ -49,7 +49,9 @@ public class TaskActivityServiceImpl implements TaskActivityService {
 
     @Override
     public List<TaskActivity> getByDate(LocalDate date) {
-        return List.of();
+        return taskActivityRepository.findByTaskDate(date);
+        
+
     }
 
     @Override
