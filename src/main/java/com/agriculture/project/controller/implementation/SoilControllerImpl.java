@@ -19,7 +19,7 @@ public class SoilControllerImpl implements SoilController {
 
     @Override
     public SoilDto create(SoilDto soil, Long id) {
-        return soilMapper.toDto(soilService.createSoilRecord(soil, id));
+        return soilService.createSoilRecord(soil, id);
     }
 
     @Override

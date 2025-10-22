@@ -117,9 +117,9 @@ public class FarmServiceImpl implements FarmService {
             farmOverviewDto.setFarmType(farm.getFarm_type());
             farmOverviewDto.setFarmName(farm.getFarm_name());
             farmOverviewDto.setLocation(farm.getFarm_location());
-            farmOverviewDto.setDominantSoilType(farmOverviewDto.getDominantSoilType());
-            farmOverviewDto.setNumberOfSections(farmOverviewDto.getNumberOfSections());
-            farmOverviewDto.setTotalSize(farmOverviewDto.getTotalSize());
+            farmOverviewDto.setDominantSoilType(farm.getFarm_name());
+            farmOverviewDto.setNumberOfSections(String.valueOf(farm.getSize()));
+            farmOverviewDto.setTotalSize(String.valueOf(farm.getSize()));
 
             return farmOverviewDto;
 

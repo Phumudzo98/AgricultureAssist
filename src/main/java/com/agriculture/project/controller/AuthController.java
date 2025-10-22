@@ -4,6 +4,7 @@ package com.agriculture.project.controller;
 import com.agriculture.project.config.JwtUtil;
 import com.agriculture.project.dto.AuthRequest;
 import com.agriculture.project.dto.AuthResponse;
+import com.agriculture.project.dto.RegisterDto;
 import com.agriculture.project.model.User;
 import com.agriculture.project.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +39,20 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AuthRequest request) {
+    public ResponseEntity<?> register(@RequestBody RegisterDto request) {
         if (userRepo.findByEmail(request.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Username already exists");
         }
         User user = new User();
+
         user.setEmail(request.getUsername());
         user.setPassword(encoder.encode(request.getPassword()));
         user.setRole("USER");
+        user.setFirstName(request.getFirstName());
+        user.setCity(request.getCity());
+        user.setProvince(request.getProvince());
+        user.setPostalCode(request.getPostalCode());
+
         userRepo.save(user);
         return ResponseEntity.ok("User registered");
     }
