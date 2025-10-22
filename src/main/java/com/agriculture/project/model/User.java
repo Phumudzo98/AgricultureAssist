@@ -27,6 +27,7 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String postalCode;
+    private String address;
     private String city;
     private String province;
     private String role;
