@@ -16,7 +16,7 @@ public class FarmDto {
 
 
     private Long id;
-    private String farm_name;
+    private String farmName;
     private String farm_type;
     private String farm_location;
     private String farm_description;

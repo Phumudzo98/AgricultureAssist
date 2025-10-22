@@ -43,5 +43,5 @@ public interface FarmController {
     List<FarmDto> searchFarm(@PathVariable String name);
 
     @PutMapping("/update-farm")
-    FarmDto updateFarm(FarmDto farmDto);
+    FarmDto updateFarm(@RequestBody FarmDto farmDto);
 }

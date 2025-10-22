@@ -71,7 +71,7 @@ public class FarmControllerImpl implements FarmController {
 
     @Override
     public List<FarmDto> searchFarm(String name) {
-        return List.of();
+        return farmMapper.toDtoList(farmService.searchFarm(name));
     }
 
     @Override

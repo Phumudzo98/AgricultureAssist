@@ -20,7 +20,7 @@ public class Farm {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String farm_name;
+    private String farmName;
     private String farm_type;
     private String farm_location;
     private String farm_description;

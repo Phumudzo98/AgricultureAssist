@@ -12,9 +12,6 @@ public class FarmOverviewDto {
     private String farmType;
     private String location;
     private String totalSize;
-    private String underCultivation;
-    private String notCultivated;
     private String numberOfSections;
-    private String dominantSoilType;
-    private String mainIrrigation;
+
 }

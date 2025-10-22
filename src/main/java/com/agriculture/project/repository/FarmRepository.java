@@ -14,5 +14,6 @@ public interface FarmRepository extends JpaRepository<Farm, Long> {
 
     Optional<Farm> findById(Long id);
     List<Farm> findByUser(User user);
+    List<Farm> findByUserAndFarmNameContainingIgnoreCase(User user, String farmName);
 
 }
