@@ -12,5 +12,5 @@ import java.util.List;
 public interface TaskActivityRepository extends JpaRepository<TaskActivity, Long> {
 
     List<TaskActivity> findByLandDetailsId(Long landId);
-    List<TaskActivity> findByTaskDate(LocalDate date);
+    List<TaskActivity> findByLandDetailsIdAndTaskDate(Long landId, LocalDate date);
 }

@@ -48,10 +48,15 @@ public class TaskActivityServiceImpl implements TaskActivityService {
     }
 
     @Override
-    public List<TaskActivity> getByDate(LocalDate date) {
-        return taskActivityRepository.findByTaskDate(date);
-        
+    public List<TaskActivity> getByDate(LocalDate date, Long landId) {
 
+        LandDetails landDetail = landDetailsRepository.findById(landId).orElse(null);
+
+        if(landDetail != null) {
+            return taskActivityRepository.findByLandDetailsIdAndTaskDate(landId, date);
+        }
+
+       return null;
     }
 
     @Override
@@ -69,12 +74,10 @@ public class TaskActivityServiceImpl implements TaskActivityService {
     public TaskActivity updateTask(Long id, TaskActivityDto updated) {
         TaskActivity taskActivity = taskActivityMapper.toEntity(updated);
 
-        Optional<LandDetails> landDetails = landDetailsRepository.findById(id);
+        TaskActivity oldTaskActivity = taskActivityRepository.findById(id).orElse(null);
 
-        if (landDetails.isPresent()) {
-            LandDetails landDetail = landDetails.get();
-
-            taskActivity.setLandDetails(landDetail);
+        if(oldTaskActivity != null) {
+            taskActivity.setId(oldTaskActivity.getId());
             return taskActivityRepository.save(taskActivity);
         }
 

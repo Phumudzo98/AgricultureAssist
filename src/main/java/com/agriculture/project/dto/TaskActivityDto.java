@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class TaskActivityDto {
-    private long id;
+    private Long id;
 
     private String taskName;           // e.g. Irrigation, Fertilizer Application
     private String description;        // details of the task

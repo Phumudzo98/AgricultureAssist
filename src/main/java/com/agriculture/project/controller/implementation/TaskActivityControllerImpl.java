@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -22,8 +23,8 @@ public class TaskActivityControllerImpl implements TaskActivityController {
 
 
     @Override
-    public TaskActivityDto create(TaskActivity taskActivity, Long id) {
-        return taskActivityMapper.toDto(taskActivityService.createTask(taskActivity, id));
+    public TaskActivityDto create(TaskActivity taskActivity, Long landId) {
+        return taskActivityMapper.toDto(taskActivityService.createTask(taskActivity, landId));
     }
 
     @Override
@@ -37,8 +38,8 @@ public class TaskActivityControllerImpl implements TaskActivityController {
     }
 
     @Override
-    public List<TaskActivityDto> getByDate(String date) {
-        return List.of();
+    public List<TaskActivityDto> getByDate(LocalDate date, Long landId) {
+        return taskActivityMapper.toDtoList(taskActivityService.getByDate(date,landId));
     }
 
     @Override

@@ -14,7 +14,7 @@ public class TaskActivity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String taskName;           // e.g. Irrigation, Fertilizer Application
     private String description;        // details of the task

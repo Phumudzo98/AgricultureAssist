@@ -16,7 +16,7 @@ public interface TaskActivityService {
 
     public List<TaskActivity> getByLand(Long landId);
 
-    public List<TaskActivity> getByDate(LocalDate date);
+    public List<TaskActivity> getByDate(LocalDate date, Long landId);
 
     public TaskActivity getById(Long id);
 
