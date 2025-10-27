@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 public class CropDto {
 
+    private Long id;
     private String cropName;          // e.g. Maize, Tomatoes
     private String variety;           // e.g. Sweet corn, Cherry tomato
     private LocalDate plantingDate;

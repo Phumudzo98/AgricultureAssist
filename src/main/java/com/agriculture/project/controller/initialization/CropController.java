@@ -19,6 +19,12 @@ public interface CropController {
     @GetMapping("/crop-by-land/{landId}")
     public List<CropDto> cropByLand(@PathVariable Long landId);
 
+    @DeleteMapping("/{cropId}")
+    public Boolean deleteCrop(@PathVariable Long cropId);
+
+    @PutMapping("/update-crop/{cropId}")
+    public CropDto updateCrop(@PathVariable Long cropId, @RequestBody CropDto cropDto);
+
 
 
 

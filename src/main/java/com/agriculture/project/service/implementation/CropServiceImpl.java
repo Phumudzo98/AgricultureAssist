@@ -17,11 +17,12 @@ public class CropServiceImpl implements CropService {
 
     private final CropRepository cropRepository;
     private final CropMapper cropMapper;
-    private LandDetailsRepository landDetailsRepository;
+    private final LandDetailsRepository landDetailsRepository;
 
-    public CropServiceImpl(CropRepository cropRepository, CropMapper cropMapper) {
+    public CropServiceImpl(CropRepository cropRepository, CropMapper cropMapper, LandDetailsRepository landDetailsRepository) {
         this.cropRepository = cropRepository;
         this.cropMapper = cropMapper;
+        this.landDetailsRepository = landDetailsRepository;
     }
 
     @Override

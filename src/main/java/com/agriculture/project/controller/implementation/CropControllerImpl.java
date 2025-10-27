@@ -20,6 +20,7 @@ public class CropControllerImpl implements CropController {
     @Override
     public CropDto addCrop(CropDto cropDto, Long landId) {
 
+
         return cropService.createCrop(cropDto, landId);
     }
 
@@ -32,7 +33,16 @@ public class CropControllerImpl implements CropController {
     @Override
     public List<CropDto> cropByLand(Long landId) {
 
+        return cropService.getAllCropsByLandId(landId);
+    }
 
-        return ;
+    @Override
+    public Boolean deleteCrop(Long cropId) {
+        return cropService.deleteCropById(cropId);
+    }
+
+    @Override
+    public CropDto updateCrop(Long cropId, CropDto cropDto) {
+        return cropService.updateCrop(cropDto, cropId);
     }
 }
