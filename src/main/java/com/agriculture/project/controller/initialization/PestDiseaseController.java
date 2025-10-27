@@ -10,8 +10,8 @@ import java.util.List;
 @RequestMapping("/pest-disease")
 public interface PestDiseaseController {
 
-    @PostMapping
-    public PestDiseaseDto create(@RequestBody PestDisease pestDisease, Long id);
+    @PostMapping("/{cropId}")
+    public PestDiseaseDto create(@RequestBody PestDisease pestDisease,@PathVariable Long cropId);
 
     @GetMapping("/{id}")
     public PestDiseaseDto getById(@PathVariable Long id);

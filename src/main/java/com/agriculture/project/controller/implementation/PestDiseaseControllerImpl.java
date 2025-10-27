@@ -19,23 +19,23 @@ public class PestDiseaseControllerImpl implements PestDiseaseController {
     private PestDiseaseMapper mapper;
 
     @Override
-    public PestDiseaseDto create(PestDisease pestDisease, Long id) {
-        return mapper.toDto(pestDiseaseService.createPestDisease(pestDisease, id ));
+    public PestDiseaseDto create(PestDisease pestDisease, Long cropId) {
+        return pestDiseaseService.createPestDisease(pestDisease, cropId);
     }
 
     @Override
     public PestDiseaseDto getById(Long id) {
-        return mapper.toDto(pestDiseaseService.getById(id));
+        return pestDiseaseService.getById(id);
     }
 
     @Override
     public List<PestDiseaseDto> getByCrop(Long cropId) {
-        return mapper.toDtoList(pestDiseaseService.getByCrop(cropId));
+        return pestDiseaseService.getByCrop(cropId);
     }
 
     @Override
     public PestDiseaseDto update(Long id, PestDisease pestDisease) {
-        return mapper.toDto(pestDiseaseService.updatePestDisease(id, pestDisease));
+        return pestDiseaseService.updatePestDisease(id, pestDisease);
     }
 
     @Override

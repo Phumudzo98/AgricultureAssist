@@ -1,6 +1,7 @@
 package com.agriculture.project.service.initialization;
 
 
+import com.agriculture.project.dto.PestDiseaseDto;
 import com.agriculture.project.model.PestDisease;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +11,10 @@ import java.util.Optional;
 @Service
 public interface PestDiseaseService {
 
-    public PestDisease createPestDisease(PestDisease pestDisease, Long id);
-    public List<PestDisease> getByCrop(Long cropId);
-    public PestDisease getById(Long id);
-    public PestDisease updatePestDisease(Long id, PestDisease updated);
+    public PestDiseaseDto createPestDisease(PestDisease pestDisease, Long id);
+    public List<PestDiseaseDto> getByCrop(Long cropId);
+    public PestDiseaseDto getById(Long id);
+    public PestDiseaseDto updatePestDisease(Long id, PestDisease updated);
     public Boolean delete(Long id);
 
 }

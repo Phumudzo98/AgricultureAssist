@@ -1,5 +1,7 @@
 package com.agriculture.project.service.implementation;
 
+import com.agriculture.project.dto.PestDiseaseDto;
+import com.agriculture.project.mapper.PestDiseaseMapper;
 import com.agriculture.project.model.Crop;
 import com.agriculture.project.model.PestDisease;
 import com.agriculture.project.repository.CropRepository;
@@ -18,11 +20,14 @@ public class PestDiseaseServiceImpl implements PestDiseaseService {
 
     @Autowired
     private PestDiseaseRepository pestDiseaseRepository;
-    private CropRepository cropRepository;
+    private final CropRepository cropRepository;
+    private final PestDiseaseMapper mapper;
+    @Autowired
+    private PestDiseaseMapper pestDiseaseMapper;
 
 
     @Override
-    public PestDisease createPestDisease(PestDisease pestDisease, Long id) {
+    public PestDiseaseDto createPestDisease(PestDisease pestDisease, Long id) {
 
         Optional<Crop> crops = cropRepository.findById(id);
 
@@ -31,32 +36,38 @@ public class PestDiseaseServiceImpl implements PestDiseaseService {
 
             pestDisease.setCrop(crop);
 
-            return pestDiseaseRepository.save(pestDisease);
+            return pestDiseaseMapper.toDto(pestDiseaseRepository.save(pestDisease));
         }
 
         return null;
     }
 
     @Override
-    public List<PestDisease> getByCrop(Long cropId) {
-        return pestDiseaseRepository.findByCropId(cropId);
+    public List<PestDiseaseDto> getByCrop(Long cropId) {
+        return pestDiseaseMapper.toDtoList(pestDiseaseRepository.findByCropId(cropId));
     }
 
     @Override
-    public PestDisease getById(Long id) {
+    public PestDiseaseDto getById(Long id) {
 
-        return pestDiseaseRepository.findById(id).orElse(null);
+        return mapper.toDto(pestDiseaseRepository.findById(id).orElse(null));
 
     }
 
     @Override
-    public PestDisease updatePestDisease(Long id, PestDisease updated) {
+    public PestDiseaseDto updatePestDisease(Long id, PestDisease updated) {
 
         PestDisease pestDisease = pestDiseaseRepository.findById(id).get();
 
         if(pestDisease!=null) {
+            pestDisease.setName(updated.getName());
+            pestDisease.setNotes(updated.getNotes());
+            pestDisease.setType(updated.getType());
+            pestDisease.setActionTaken(updated.getActionTaken());
+            pestDisease.setSeverity(updated.getSeverity());
 
-            return pestDisease;
+
+            return mapper.toDto(pestDiseaseRepository.save(pestDisease));
         }
         return null;
     }
