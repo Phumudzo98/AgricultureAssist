@@ -10,14 +10,14 @@ import java.util.List;
 @RequestMapping("/crop")
 public interface CropController {
 
-    @PostMapping("/add-crop")
-    public String addCrop(@RequestBody AddCropDto cropDto);
+    @PostMapping("/add-crop/{landId}")
+    public CropDto addCrop(@RequestBody CropDto cropDto, @PathVariable Long landId);
 
     @GetMapping("/crop-details/{id}")
-    public CropDto cropDetails(@PathVariable int id);
+    public CropDto cropDetails(@PathVariable Long id);
 
     @GetMapping("/crop-by-land/{landId}")
-    public List<CropDto> cropByLand(@PathVariable int landId);
+    public List<CropDto> cropByLand(@PathVariable Long landId);
 
 
 

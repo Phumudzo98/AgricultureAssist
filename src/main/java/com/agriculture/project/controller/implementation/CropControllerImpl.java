@@ -18,17 +18,21 @@ public class CropControllerImpl implements CropController {
     private final CropService cropService;
 
     @Override
-    public String addCrop(AddCropDto cropDto) {
-        return "";
+    public CropDto addCrop(CropDto cropDto, Long landId) {
+
+        return cropService.createCrop(cropDto, landId);
     }
 
     @Override
-    public CropDto cropDetails(int id) {
-        return null;
+    public CropDto cropDetails(Long id) {
+
+        return cropService.getCropById(id);
     }
 
     @Override
-    public List<CropDto> cropByLand(int landId) {
-        return List.of();
+    public List<CropDto> cropByLand(Long landId) {
+
+
+        return ;
     }
 }
