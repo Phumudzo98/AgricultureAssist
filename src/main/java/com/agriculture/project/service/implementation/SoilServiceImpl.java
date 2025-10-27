@@ -2,7 +2,9 @@ package com.agriculture.project.service.implementation;
 
 import com.agriculture.project.dto.SoilDto;
 import com.agriculture.project.mapper.SoilMapper;
+import com.agriculture.project.model.LandDetails;
 import com.agriculture.project.model.Soil;
+import com.agriculture.project.repository.LandDetailsRepository;
 import com.agriculture.project.repository.SoilRepository;
 import com.agriculture.project.service.initialization.SoilService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +19,21 @@ public class SoilServiceImpl implements SoilService {
 
     private final SoilRepository soilRepository;
     private final SoilMapper soilMapper;
+    private final LandDetailsRepository landDetailsRepository;
 
     @Override
-    public SoilDto createSoilRecord(SoilDto soil, Long id) {
-        return soilMapper.toDto(soilRepository.save(soilMapper.toEntity(soil)));
+    public SoilDto createSoilRecord(SoilDto soil, Long landId) {
+
+        Optional<LandDetails> landDetails = landDetailsRepository.findById(landId);
+
+        if (landDetails.isPresent()) {
+            Soil entitySoil = soilMapper.toEntity(soil);
+
+            entitySoil.setLandDetails(landDetails.get());
+            return soilMapper.toDto(soilRepository.save(entitySoil));
+        }
+
+        return null;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Setter
 public class SoilDto {
 
-    private long id;
+    private Long id;
     private String soilType;
     private double phLevel;
     private double moistureLevel;

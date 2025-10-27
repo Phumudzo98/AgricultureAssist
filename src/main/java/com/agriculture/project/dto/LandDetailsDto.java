@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class LandDetailsDto {
 
+    private Long id;
     private String sectionName;
     private String soilType;
     private LocalDate lastPlantedDate;

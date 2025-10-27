@@ -18,8 +18,8 @@ public class SoilControllerImpl implements SoilController {
 
 
     @Override
-    public SoilDto create(SoilDto soil, Long id) {
-        return soilService.createSoilRecord(soil, id);
+    public SoilDto create(SoilDto soil, Long landId) {
+        return soilService.createSoilRecord(soil, landId);
     }
 
     @Override

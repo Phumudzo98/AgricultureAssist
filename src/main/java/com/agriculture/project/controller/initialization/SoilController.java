@@ -10,8 +10,8 @@ import java.util.List;
 @RequestMapping("/soil")
 public interface SoilController {
 
-    @PostMapping
-    public SoilDto create(@RequestBody SoilDto soil, Long id);
+    @PostMapping("/{landId}")
+    public SoilDto create(@RequestBody SoilDto soil, @PathVariable Long landId);
 
     @GetMapping("/{id}")
     public SoilDto getById(@PathVariable Long id);
