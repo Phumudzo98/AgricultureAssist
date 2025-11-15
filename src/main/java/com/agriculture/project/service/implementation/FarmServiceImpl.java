@@ -10,9 +10,11 @@ import com.agriculture.project.repository.FarmRepository;
 import com.agriculture.project.repository.LandDetailsRepository;
 import com.agriculture.project.repository.UserRepository;
 import com.agriculture.project.service.initialization.FarmService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,13 +24,14 @@ import java.util.Optional;
 public class FarmServiceImpl implements FarmService {
 
 
-
+    private final ObjectMapper objectMapper;
     private final FarmRepository farmRepository;
     private final FarmMapper farmMapper;
     private final UserRepository userRepository;
     private final LandDetailsRepository landDetailsRepository;
 
-    public FarmServiceImpl(FarmRepository farmRepository, FarmMapper farmMapper, UserRepository userRepository, LandDetailsRepository landDetailsRepository) {
+    public FarmServiceImpl(ObjectMapper objectMapper, FarmRepository farmRepository, FarmMapper farmMapper, UserRepository userRepository, LandDetailsRepository landDetailsRepository) {
+        this.objectMapper = objectMapper;
         this.farmRepository = farmRepository;
         this.farmMapper = farmMapper;
         this.userRepository = userRepository;

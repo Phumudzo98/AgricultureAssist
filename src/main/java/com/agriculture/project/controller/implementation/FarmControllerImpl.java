@@ -4,14 +4,19 @@ import com.agriculture.project.controller.initialization.FarmController;
 import com.agriculture.project.dto.ChatResponse;
 import com.agriculture.project.dto.FarmDto;
 import com.agriculture.project.dto.FarmOverviewDto;
+import com.agriculture.project.dto.LandDetailsDto;
 import com.agriculture.project.mapper.FarmMapper;
 import com.agriculture.project.service.ChatGptService;
 import com.agriculture.project.service.initialization.FarmService;
 import com.agriculture.project.service.initialization.GeminiService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,7 +30,33 @@ public class FarmControllerImpl implements FarmController {
 
 
     @Override
-    public FarmDto createFarm(FarmDto farmDto) {
+    public FarmDto createFarm(String farmName, String farmType, String farmLocation, String farmDescription, double size, String metrics, String city, String landDetailsJson, MultipartFile image) throws Exception {
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        List<LandDetailsDto> landDetails = Arrays.asList(
+                mapper.readValue(landDetailsJson, LandDetailsDto[].class)
+        );
+
+
+        FarmDto farmDto = new FarmDto();
+        farmDto.setFarmName(farmName);
+        farmDto.setFarm_type(farmType);
+        farmDto.setFarm_location(farmLocation);
+        farmDto.setFarm_description(farmDescription);
+        farmDto.setSize(size);
+        farmDto.setMetrics(metrics);
+        farmDto.setCity(city);
+        farmDto.setLandDetails(landDetails);
+
+        if (image != null && !image.isEmpty()) {
+            farmDto.setFileType(image.getContentType());
+            farmDto.setImage(image.getBytes());
+        }
+
+
         return farmMapper.toDto(farmService.createFarm(farmDto));
     }
 

@@ -22,8 +22,10 @@ public class FarmDto {
     private String farm_description;
     private double size;
     private String metrics;
-    private Byte[] image;
+    private byte[] image;
+    private String fileType;
     private String city;
+    
 
     private List<LandDetailsDto> landDetails;
 }

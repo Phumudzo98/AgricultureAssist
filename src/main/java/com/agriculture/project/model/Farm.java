@@ -28,8 +28,12 @@ public class Farm {
     private String metrics;
     private String city;
 
-    @Lob
+
+    @Column(columnDefinition = "bytea")
     private byte[] image;
+
+
+    private String fileType;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

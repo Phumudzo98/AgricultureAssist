@@ -9,11 +9,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/farm")
 public interface FarmController {
 
-    @PostMapping("/create-farm")
-    FarmDto createFarm(@RequestBody FarmDto farmDto);
+    @PostMapping(value = "/create-farm", consumes = "multipart/form-data")
+    public FarmDto createFarm(
+            @RequestParam("farmName") String farmName,
+            @RequestParam("farm_type") String farmType,
+            @RequestParam("farm_location") String farmLocation,
+            @RequestParam("farm_description") String farmDescription,
+            @RequestParam("size") double size,
+            @RequestParam("metrics") String metrics,
+            @RequestParam("city") String city,
+            @RequestParam("landDetails") String landDetailsJson,  // JSON string
+            @RequestPart(value = "image", required = false) MultipartFile image
+    ) throws Exception;
 
     @GetMapping("/farm-overview/{farmId}")
     FarmOverviewDto farmOverview(@PathVariable("farmId") Long farmId);
@@ -21,7 +32,7 @@ public interface FarmController {
     @GetMapping("/get-farms")
     List<FarmDto> getFarms();
 
-    @PostMapping("/analyze")
+       @PostMapping("/analyze")
     public String analyzeImage(
             @RequestParam("prompt") String prompt,
             @RequestParam("file") MultipartFile file

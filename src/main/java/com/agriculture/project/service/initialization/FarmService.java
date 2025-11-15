@@ -3,6 +3,7 @@ package com.agriculture.project.service.initialization;
 import com.agriculture.project.dto.FarmDto;
 import com.agriculture.project.dto.FarmOverviewDto;
 import com.agriculture.project.model.Farm;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
